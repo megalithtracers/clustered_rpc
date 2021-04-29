@@ -1,4 +1,4 @@
-module Clustered
+module ClusteredRpc
   module Transport
     class Base
 

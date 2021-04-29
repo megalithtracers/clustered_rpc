@@ -1,15 +1,15 @@
 require 'clustered/rpc_methods'
 require 'open3'
 
-module Clustered
+module ClusteredRpc
   class Info
-    include Clustered::RpcMethods
+    include ClusteredRpc::Methods
 
     def self.stats
       require 'objspace'
-      { instance_id: Clustered.instance_id, 
-        transport_class: Clustered.transport_class.name.to_s, 
-        options: Clustered.options,
+      { instance_id: ClusteredRpc.instance_id, 
+        transport_class: ClusteredRpc.transport_class.name.to_s, 
+        options: ClusteredRpc.options,
         process_id: Process.pid,
         uptime: get_uptime,
         used_mb: memory_used,

@@ -1,11 +1,11 @@
-require "clustered/transport/redis_cluster"
+require "clustered_rpc/transport/redis_cluster"
 require "shared_functions_helper"
 
-RSpec.describe Clustered::Transport::RedisCluster do
+RSpec.describe ClusteredRpc::Transport::RedisCluster do
   context "Using RedisCluster" do
     before(:all) do
-      Clustered.config do |c|
-        c.transport_class = Clustered::Transport::RedisCluster
+      ClusteredRpc.config do |c|
+        c.transport_class = ClusteredRpc::Transport::RedisCluster
         c.options = {redis_url: ""}
       end
     end
@@ -13,7 +13,7 @@ RSpec.describe Clustered::Transport::RedisCluster do
     before(:each) do 
       if Random.rand > 0.25
         puts "Attempting reconnect"
-        Clustered.reconnect
+        ClusteredRpc.reconnect
         puts "Reconnect worked..."
       end
     end

@@ -1,12 +1,12 @@
-require "clustered/version"
+require "clustered_rpc/version"
 require "securerandom"
 require "logger"
 require "json"
 require "active_support/concern"
-require "clustered/rpc_proxy"
-require "clustered/transport/base"
+require "clustered_rpc/proxy"
+require "clustered_rpc/transport/base"
 
-module Clustered
+module ClusteredRpc
   class Error < StandardError; end
 
   @@instance_id = SecureRandom.hex(5)
@@ -41,7 +41,7 @@ module Clustered
     block.call(self)
 
     @@instance_id ||= SecureRandom.hex(5)
-    raise "Please set transport_class in Clustered.config" if transport_class.nil? 
+    raise "Please set transport_class in ClusteredRpc.config" if transport_class.nil? 
     logger.info "Clustered using #{@@transport_class}"
     @@transport = @@transport_class.new
     @@transport.connect

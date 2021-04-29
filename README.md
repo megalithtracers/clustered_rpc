@@ -1,4 +1,4 @@
-# Clustered
+# ClusteredRpc
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/clustered`. To experiment with that code, run `bin/console` for an interactive prompt.
 
@@ -9,7 +9,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'clustered'
+gem 'clustered_rpc'
 ```
 
 And then execute:
@@ -18,11 +18,25 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install clustered
+    $ gem install clustered_rpc
 
 ## Usage
 
-TODO: Write usage instructions here
+Works on *static* class methods!!!
+
+```ruby
+class MyClass
+  include ClusteredRpc::Methods
+
+  def self.do_the_thing
+    # important code living on many servers in the cluster
+    puts "I'm important!"
+  end
+end
+
+# Run the method on every process running in the cluster
+MyClass.clustered_rpc.do_the_thing
+```
 
 ## Development
 

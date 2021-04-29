@@ -1,15 +1,14 @@
 require "bundler/setup"
-require "clustered"
-require "clustered/transport/local_process"
+require "clustered_rpc"
+require "clustered_rpc/transport/local_process"
+require "clustered_rpc/methods"
 require "byebug"
 require "awesome_print"
-require "clustered/rpc_methods"
-
-require 'simplecov'
+require "simplecov"
 SimpleCov.start
 
 class TestClass
-  include Clustered::RpcMethods
+  include ClusteredRpc::Methods
 
   def self.echo_no_args_or_kwargs()
     {}

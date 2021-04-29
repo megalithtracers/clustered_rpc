@@ -1,11 +1,11 @@
-module Clustered
+module ClusteredRpc
   module Transport
-    class LocalProcess < Clustered::Transport::Base
+    class LocalProcess < ClusteredRpc::Transport::Base
 
 
       def publish(payload={})
         result = run_method_from_message(payload)
-        Thread.current[:clustered_pass_through_result] = { Clustered.instance_id => result.to_json}
+        Thread.current[:clustered_pass_through_result] = { ClusteredRpc.instance_id => result.to_json}
       end
 
       def get_result(request_id)

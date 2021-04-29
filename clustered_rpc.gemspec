@@ -1,10 +1,10 @@
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "clustered/version"
+require "clustered_rpc/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "clustered"
-  spec.version       = Clustered::VERSION
+  spec.name          = "clustered_rpc"
+  spec.version       = ClusteredRpc::VERSION
   spec.authors       = ["megalithtracers@gmail.com"]
   spec.email         = ["megalithtracers@gmail.com"]
 
@@ -16,8 +16,8 @@ Gem::Specification.new do |spec|
   #  spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/megalithtracers/clustered"
-  spec.metadata["changelog_uri"] = "https://github.com/megalithtracers/clustered/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/megalithtracers/clustered_rpc"
+  spec.metadata["changelog_uri"] = "https://github.com/megalithtracers/clustered_rpc/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
