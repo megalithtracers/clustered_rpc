@@ -3,8 +3,7 @@ _RPC = Remote Procedure Calls_
 
 [![RubyGems][gem_version_badge]][ruby_gems]
 [![Travis CI][travis_ci_badge]][travis_ci]
-[![Code Climate][code_climate_badge]][code_climate]
-[![Code Climate Coverage][code_climate_coverage_badge]][code_climate]
+[![Coveralls][coveralls_badge]][coveralls]
 
 
 ClusteredRpc allows you to run code on every ruby process running within your cluster.
@@ -152,6 +151,5 @@ The gem is available as open source under the terms of the [MIT License](https:/
 [ruby_gems]: http://rubygems.org/gems/clustered_rpc
 [travis_ci]: http://travis-ci.org/megalithtracers/clustered_rpc
 [travis_ci_badge]: https://img.shields.io/travis/megalithtracers/clustered_rpc/master.svg?style=flat
-[code_climate]: https://codeclimate.com/github/megalithtracers/clustered_rpc
-[code_climate_badge]: http://img.shields.io/codeclimate/github/megalithtracers/clustered_rpc.svg?style=flat
-[code_climate_coverage_badge]: https://codeclimate.com/github/megalithtracers/clustered_rpc/badges/coverage.svg
+[coveralls_badge]: https://img.shields.io/coveralls/github/megalithtracers/clustered_rpc/main
+[coveralls]: https://coveralls.io/github/megalithtracers/clustered_rpc
