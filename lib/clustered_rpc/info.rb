@@ -1,12 +1,13 @@
-require 'clustered/rpc_methods'
+require 'clustered_rpc/methods'
 require 'open3'
 
 module ClusteredRpc
   class Info
     include ClusteredRpc::Methods
 
-    def self.stats
+    def self.stats(detailed_memory_stats = false)
       require 'objspace'
+      r = 
       { instance_id: ClusteredRpc.instance_id, 
         transport_class: ClusteredRpc.transport_class.name.to_s, 
         options: ClusteredRpc.options,
@@ -15,11 +16,13 @@ module ClusteredRpc
         used_mb: memory_used,
         startup_command: startup_command,
         process_type: lookup_process_type(startup_command),
-        count_objects_size: ObjectSpace.count_objects_size,
-        gc: GC.stat,
-        count_nodes: ObjectSpace.count_nodes
+        count_nodes: ObjectSpace.count_nodes,
       }
-
+      if detailed_memory_stats
+        r[:count_objects_size] = ObjectSpace.count_objects_size
+        r[:gc] = GC.stat
+      end
+      r
     end
 
     def self.startup_command

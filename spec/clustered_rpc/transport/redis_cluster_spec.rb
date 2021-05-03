@@ -6,6 +6,7 @@ RSpec.describe ClusteredRpc::Transport::RedisCluster do
     before(:all) do
       ClusteredRpc.config do |c|
         c.transport_class = ClusteredRpc::Transport::RedisCluster
+        c.cluster_namespace = "#{SecureRandom.hex}_application"
         c.options = {redis_url: ""}
       end
     end

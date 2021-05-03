@@ -7,7 +7,7 @@ module ClusteredRpc
       def initialize
         @redis_subscriber = nil
         @redis_publish = nil
-        @redis_message_pubsub_key = "__cluster_messages"
+        @redis_message_pubsub_key = "__#{ClusteredRpc.cluster_namespace}_messages"
         connect
       end
 

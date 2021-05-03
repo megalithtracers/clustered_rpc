@@ -11,6 +11,7 @@ module ClusteredRpc
 
   @@instance_id = SecureRandom.hex(5)
   @@logger = ::Logger.new(STDOUT)
+  @@cluster_namespace = "clustered_rpc"
   @@transport_class = nil
   @@transport = nil
   @@options = {}
@@ -20,6 +21,9 @@ module ClusteredRpc
 
   def self.instance_id=(instance_id); @@instance_id = instance_id; end
   def self.instance_id; @@instance_id; end
+
+  def self.cluster_namespace=(cluster_namespace); @@cluster_namespace = cluster_namespace; end
+  def self.cluster_namespace; @@cluster_namespace; end
 
   def self.transport_class=(transport_class); @@transport_class = transport_class; end
   def self.transport_class; @@transport_class; end
@@ -41,8 +45,11 @@ module ClusteredRpc
     block.call(self)
 
     @@instance_id ||= SecureRandom.hex(5)
-    raise "Please set transport_class in ClusteredRpc.config" if transport_class.nil? 
-    logger.info "Clustered using #{@@transport_class}"
+    if transport_class.nil?
+      require "clustered_rpc/transport/local_process"
+      @@transport_class = ClusteredRpc::Transport::LocalProcess
+    end
+    logger.info "Clustered using #{@@transport_class}[#{@@cluster_namespace}]"
     @@transport = @@transport_class.new
     @@transport.connect
 
