@@ -1,10 +1,9 @@
 # ClusteredRpc
-_RPC = Remote Procedure Calls_
-
 [![RubyGems][gem_version_badge]][ruby_gems]
 [![Travis CI][travis_ci_badge]][travis_ci]
 [![Coveralls][coveralls_badge]][coveralls]
 
+_RPC = Remote Procedure Calls_
 
 ClusteredRpc allows you to run code on every ruby process running within your cluster.
 
