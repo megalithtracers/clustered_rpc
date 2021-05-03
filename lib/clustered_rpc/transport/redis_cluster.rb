@@ -14,7 +14,7 @@ module ClusteredRpc
       def publish(payload={})
         @redis_publish.publish @redis_message_pubsub_key, payload.to_json
       rescue => e 
-        ClusteredRpc.logger.error "ClusteredRpc.publish encountered errror: #{e.message}"
+        ClusteredRpc.logger.error "ClusteredRpc.publish encountered error: #{e.message}"
         raise e
       end
 

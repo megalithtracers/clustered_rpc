@@ -43,16 +43,9 @@ module ClusteredRpc
 
   def self.config(force=false, &block)
     block.call(self)
-
     @@instance_id ||= SecureRandom.hex(5)
-    if transport_class.nil?
-      require "clustered_rpc/transport/local_process"
-      @@transport_class = ClusteredRpc::Transport::LocalProcess
-    end
-    logger.info "Clustered using #{@@transport_class}[#{@@cluster_namespace}]"
-    @@transport = @@transport_class.new
+    ensure_transport
     @@transport.connect
-
   end
 
   def self.reconnect
@@ -64,9 +57,20 @@ module ClusteredRpc
   def self.publish(payload={})
     # if :request_id is already present, then we're responding with a process-level response
     # otherwise we're creating a new clustered_request and should generate a :request_io
+    ensure_transport
     payload[:request_id] ||= SecureRandom.hex(8)
     @@transport.publish payload
     payload[:request_id]
   end
 
+  private
+  def self.ensure_transport
+    return if @@transport
+    if @@transport_class.nil?
+      require "clustered_rpc/transport/local_process"
+      @@transport_class = ClusteredRpc::Transport::LocalProcess
+    end
+    logger.info "Clustered using #{@@transport_class}[#{@@cluster_namespace}]"
+    @@transport = @@transport_class.new
+  end
 end

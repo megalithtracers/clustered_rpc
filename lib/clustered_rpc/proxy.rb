@@ -10,7 +10,7 @@ module ClusteredRpc
       request_id = ::ClusteredRpc.publish({'klass' => @target.name, 'method' => method, 'args' => args, 'kwargs' => kwargs}.merge(@options))
       {request_id: request_id, success: true, results: ::ClusteredRpc.get_result(request_id, wait_seconds)}
     rescue => e 
-      ClusteredRpc.logger.error "ClusteredRpc::Proxy encountered errror: #{e.message}"
+      ClusteredRpc.logger.error "ClusteredRpc::Proxy encountered error: #{e.message}"
       {request_id: "Error", success: false, results: e.message}
     end
     
