@@ -42,6 +42,7 @@ module ClusteredRpc
 
 
   def self.config(force=false, &block)
+    @@transport = nil
     block.call(self)
     @@instance_id ||= SecureRandom.hex(5)
     ensure_transport
