@@ -27,6 +27,8 @@ module ClusteredRpc
         if @subscriber_thread
           ClusteredRpc.logger.warn "ClusteredRpc: killing subscriber thread"
           @subscriber_thread.kill
+          # https://stackoverflow.com/questions/49490278/wait-for-a-thread-to-die-in-ruby
+          sleep 0.01 while @subscriber_thread.alive?
           @redis_subscriber = nil
         end
         connect
