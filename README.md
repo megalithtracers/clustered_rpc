@@ -149,6 +149,6 @@ The gem is available as open source under the terms of the [MIT License](https:/
 [gem_version_badge]: https://img.shields.io/gem/v/clustered_rpc.svg?style=flat
 [ruby_gems]: http://rubygems.org/gems/clustered_rpc
 [travis_ci]: http://travis-ci.org/megalithtracers/clustered_rpc
-[travis_ci_badge]: https://img.shields.io/travis/megalithtracers/clustered_rpc/main.svg?style=flat
+[travis_ci_badge]: https://travis-ci.com/megalithtracers/clustered_rpc.svg?branch=main
 [coveralls_badge]: https://img.shields.io/coveralls/github/megalithtracers/clustered_rpc/main
 [coveralls]: https://coveralls.io/github/megalithtracers/clustered_rpc
