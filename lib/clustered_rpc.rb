@@ -5,6 +5,7 @@ require "json"
 require "active_support/concern"
 require "clustered_rpc/proxy"
 require "clustered_rpc/transport/base"
+require "clustered_rpc/transport/local_process"
 
 module ClusteredRpc
   class Error < StandardError; end
@@ -33,7 +34,8 @@ module ClusteredRpc
 
   # request_id should have been returned from the call to #cluster_send
   def self.get_result(request_id, wait_seconds = 1.0)
-    sleep(wait_seconds) if wait_seconds
+    # Don't wait at all when using LocalProcess
+    sleep(wait_seconds) if wait_seconds && transport_class != ClusteredRpc::Transport::LocalProcess
     results = @@transport.get_result(request_id)
     results.keys.each{|k| results[k] = JSON.parse(results[k])}
     results # ??? Rails anyone? .with_indifferent_access
